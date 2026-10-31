@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WidgetDemoApp.Pages.MainPage"
+             Title="Widget Demo App">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Border StrokeShape="Ellipse" HeightRequest="120" WidthRequest="120"
+                    HorizontalOptions="Center" Padding="0">
+                <Image Source="dotnet_bot.png" Aspect="AspectFill" />
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="Rahul Sharma" FontSize="22" FontAttributes="Bold" />
+                    <Label Text="B.Tech Computer Engineering" FontSize="14" TextColor="Gray" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Button x:Name="LikeButton" Text="Like (0)" Clicked="OnLikeClicked" Grid.Column="0" />
+                <Button Text="Reset" Clicked="OnResetClicked" Grid.Column="1" />
+                <Button Text="Message" Clicked="OnMessageClicked" Grid.Column="2" />
+            </Grid>
+
+            <ActivityIndicator x:Name="Spinner" IsRunning="False" IsVisible="False" />
+
+            <Entry x:Name="CommentEntry" Placeholder="Add a comment" />
+            <Button Text="Post" Clicked="OnPostClicked" HorizontalOptions="Start" />
+            <Label x:Name="CommentLabel" Text="" />
+
+            <Label Text="Bio" FontAttributes="Bold" />
+            <Editor x:Name="BioEditor" Placeholder="Write a short bio" HeightRequest="100" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Available for internships" VerticalOptions="Center" />
+                <Switch Toggled="OnSwitchToggled" />
+                <Label x:Name="AvailLabel" Text="No" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Label Text="Skills" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Skills}"
+                            HeightRequest="60"
+                            ItemsLayout="HorizontalList"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSkillSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 20" Padding="12,6"
+                                Margin="4" BackgroundColor="#E3F2FD">
+                            <Label Text="{Binding .}" TextColor="Black" VerticalOptions="Center" />
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
